@@ -1,5 +1,9 @@
 [ -z "$PS1" ] && return
 
+if [ -z "$HOST" ]; then
+  export HOST=`hostname`
+fi
+
 VIRTUAL_ENV_DISABLE_PROMPT='true'
 
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
@@ -32,7 +36,7 @@ function prompt_command {
 }
 
 PROMPT_COMMAND=prompt_command
-PS1="\e[0;31m\${fill}\e[m\n\e[0;34m\${prompt}\e[m\n$ "
+PS1="\[\033]0;\h\007\]\e[0;31m\${fill}\e[m\n\e[0;34m\${prompt}\e[m\n$ "
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
