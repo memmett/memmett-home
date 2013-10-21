@@ -36,12 +36,28 @@
 	(setq end (f90-find-declaration-block-end))
 	(align-regexp start end "\\(\\s-*\\)\\(intent\\|::\\)" 1 1 t)))))
 
+(defun f90-align ()
+  "Align fortran stuff..."
+  (interactive)
+  (let (line)
+    (setq line (thing-at-point 'line))
+  (when (string-match "^\s*!" line)
+    (fill-paragraph))
+  (when (string-match "::" line)
+    (f90-align-declarations))
+  (when (string-match "=" line)
+    (align nil nil))))
+
+
+(eval-after-load 'f90-mode
+  '(add-to-list 'align-rules-list '(f90-assignment
+				    (regexp . "[^-=!^&*+<>/| 	\n]\\(\\s-*[-=!^&*+<>/|]*\\)=\\(\\s-*\\)\\([^= 	\n]\\|$\\)")
+				    (group 1 2)
+				    (modes . '(f90-mode))
+				    (justify . t)
+				    (tab-stop))))
+
 (add-hook 'f90-mode-hook '(lambda ()
-			    (local-set-key (kbd "M-q")
-					   (lambda ()
-					     (interactive)
-					     (when (string-match "^\s*!" (thing-at-point 'line))
-					       (fill-paragraph))
-					     (f90-align-declarations)))))
+			    (local-set-key (kbd "M-q") 'f90-align)))
 
 (provide 'memmett-fortran)
