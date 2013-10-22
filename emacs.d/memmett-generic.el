@@ -1,8 +1,12 @@
 
 (add-to-list 'load-path "~/.memmett-emacs.d/color-theme")
 (require 'color-theme)
+(require 'color-theme-solarized)
 (color-theme-initialize)
-(color-theme-midnight)
+;; (color-theme-midnight)
+(color-theme-solarized-dark)
+
+
 
 (blink-cursor-mode -1)
 (column-number-mode 1)
