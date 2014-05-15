@@ -3,10 +3,19 @@
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
-;; (color-theme-midnight)
 (color-theme-solarized-dark)
+;(color-theme-solarized-light)
 
+(setenv "LD_LIBRARY_PATH" "/home/memmett/gcc-4.7/lib:/home/memmett/gcc-4.7/lib64")
 
+(add-to-list 'load-path "~/projects/org-mode/lisp")
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((shell . t)
+;;    (emacs-lisp . t)
+;;    ))
 
 (blink-cursor-mode -1)
 (column-number-mode 1)
@@ -32,14 +41,23 @@
  '(default-major-mode 'text-mode)
  '(display-time-24hr-format t)
  '(enable-recursive-minibuffers t)
- '(kept-new-versions 5)
- '(kept-old-versions 5)
- '(version-control t)
  '(special-display-buffer-names
    '("*compilation*" "*grep*" "*tex-shell*" "*asy-compilation*" "*Async Shell Command*"))
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ispell-dictionary "en_CA"))
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(font-latex-math-face ((((class color) (background dark)) (:foreground "#93a1a1"))))
+ '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face))))
+ '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face))))
+ '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face))))
+ '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face))))
+ '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face)))))
 
 (add-hook 'before-save-hook '(lambda () (delete-trailing-whitespace)))
 

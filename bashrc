@@ -26,7 +26,7 @@ function prompt_command {
         venv="($venv) "
     fi
 
-    prompt="$venv$(git_branch)$USER@$HOST:${PWD}"
+    prompt="$venv$(git_branch)$HOST ${PWD}"
 
     let fillsize=${COLUMNS} #-${#prompt}
     if [ "$fillsize" -gt "0" ]; then
