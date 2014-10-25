@@ -1,5 +1,5 @@
 
-(add-to-list 'load-path "~/.memmett-emacs.d/color-theme")
+(add-to-list 'load-path "~/projects/memmett-home/elisp/color-theme")
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
@@ -11,17 +11,47 @@
 (add-to-list 'load-path "~/projects/org-mode/lisp")
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((shell . t)
-;;    (emacs-lisp . t)
-;;    ))
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(package-initialize)
+
+(require 'helm-config)
+
+;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
+;; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+;; (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(helm-mode -1)
+(global-set-key (kbd "C-c h") 'helm-mini)
+
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+
+
+(projectile-global-mode)
+
+(require 'haskell-mode-autoloads)
+
+;(require 'multiple-cursors)
+;(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)
+   (emacs-lisp . t)
+   (python . t)
+   ))
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
 
 (blink-cursor-mode -1)
 (column-number-mode 1)
 (display-time-mode 1)
 (global-font-lock-mode 1)
-(iswitchb-mode 1)
+(iswitchb-mode -1)
 (line-number-mode 1)
 (menu-bar-mode -1)
 (put 'downcase-region 'disabled nil)
@@ -31,7 +61,8 @@
 (tool-bar-mode -1)
 (which-function-mode)
 (winner-mode 1)
-(ido-mode)
+(ido-mode 1)
+(setq-default indent-tabs-mode nil)
 
 (custom-set-variables
  '(c-hungry-delete-key t)

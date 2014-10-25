@@ -36,7 +36,11 @@ function prompt_command {
 }
 
 PROMPT_COMMAND=prompt_command
-PS1="\[\033]0;\h\007\]\e[0;31m\${fill}\e[m\n\e[0;34m\${prompt}\e[m\n$ "
+if [ $TERM = "eterm-color" ]; then
+  PS1="\e[0;31m\${fill}\e[m\n\e[0;34m\${prompt}\e[m\n$ "
+else
+  PS1="\[\033]0;\h\007\]\e[0;31m\${fill}\e[m\n\e[0;34m\${prompt}\e[m\n$ "
+fi
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
