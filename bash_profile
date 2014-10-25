@@ -1,5 +1,7 @@
 # .bash_profile
 
+export HOST=`hostname`
+
 LD_LIBRARY_PATH=$HOME/opt/lib:$HOME/opt/lib64:$LD_LIBRARY_PATH
 PATH=$HOME/bin:$HOME/opt/bin:$HOME/bin:$PATH
 

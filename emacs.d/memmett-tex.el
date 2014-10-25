@@ -5,6 +5,8 @@
 
 (custom-set-variables
  '(TeX-source-specials-mode t)
+ '(TeX-global-PDF-mode t)
+ '(TeX-PDF-mode t)
  '(reftex-plug-into-AUCTeX t)
  '(reftex-default-label-alist-entries
    '(AMSTeX amsmath endnotes fancybox floatfig longtable picinpar rotating
